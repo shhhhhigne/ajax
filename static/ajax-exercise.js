@@ -30,6 +30,11 @@ function showWeather(evt) {
         $('#weather-info').html(results['forecast']);
     });
 
+    // $('#zipcode-field').load('/weather.json', function(results) {
+    //     $('#weather-info').html(results['forecast']);
+  
+    // });
+
     // TODO: request weather with that URL and show the forecast in #weather-info
 }
 
@@ -43,10 +48,13 @@ $("#weather-form").on('submit', showWeather);
 function orderMelons(evt) {
     evt.preventDefault();
 
-    var formInputs = {
-        "melon_type": $("#melon-type-field").val(),
-        "qty": $("#qty-field").val()
-    };
+    // var formInputs = {
+    //     "melon_type": $("#melon-type-field").val(),
+    //     "qty": $("#qty-field").val()
+    // };
+
+    var formInputs = $("form").serialize();
+
 
     $.post('/order-melons.json', formInputs, function(result) {
         $("#order-status").html(result['msg']);
